@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Tempo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #333;
+      padding: 15px;
+      text-align: center;
+    }
+
+    header nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      text-align: center;
+      padding: 50px 20px;
+      flex: 1;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #resultado {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #444;
+    }
+
+    .foto-namoro {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .foto-namoro img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #444;
+    }
+
+    .mais-informacoes {
+      background-color: #fff;
+      margin: 40px auto;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .mais-informacoes h2 {
+      color: #333;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .mais-informacoes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mais-informacoes li {
+      padding: 5px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h2></h2>
+    </nav>
+  </header>
+
+  <main>
+    <div class="foto-namoro">
+      <img src="https://via.placeholder.com/160" alt="Foto casal">
+    </div>
+
+    <h1>Tempo desde que começamos a namoro</h1>
+    <p>Calculando desde <strong>16 de março de 2024</strong> até hoje:</p>
+    <div id="resultado"></div>
+  </main>
+
+  <section class="mais-informacoes">
+    <h2>+ Informações</h2>
+    <ul>
+      <li><strong>Aniversário de William:</strong> 26/04/2004</li>
+      <li><strong>Aniversário de Carla:</strong> 18/11/2005</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Feito com 💙 por William
+  </footer>
+
+  <script>
+    function calcularDiferenca() {
+      const dataFixa = new Date("2024-03-16");
+      const hoje = new Date();
+
+      let anos = hoje.getFullYear() - dataFixa.getFullYear();
+      let meses = hoje.getMonth() - dataFixa.getMonth();
+      let dias = hoje.getDate() - dataFixa.getDate();
+
+      if (dias < 0) {
+        meses--;
+        const ultimoDiaMesAnterior = new Date(hoje.getFullYear(), hoje.getMonth(), 0).getDate();
+        dias += ultimoDiaMesAnterior;
+      }
+
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      const tempoTotalMs = hoje - dataFixa;
+      const totalDias = Math.floor(tempoTotalMs / (1000 * 60 * 60 * 24));
+
+      document.getElementById("resultado").innerHTML = `
+        <p><strong>${anos}</strong> ano(s), <strong>${meses}</strong> mês(es) e <strong>${dias}</strong> dia(s)</p>
+        <p>Total: <strong>${totalDias}</strong> dias</p> 
+      `;
+    }
+
+    calcularDiferenca();
+  </script>
+
+</body>
+</html>
